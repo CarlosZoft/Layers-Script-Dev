@@ -1,3 +1,3 @@
 start:
-	python3.8 run-all.py
+	python3 run-all.py
 	

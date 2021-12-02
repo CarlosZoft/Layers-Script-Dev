@@ -1,19 +1,33 @@
+import pyautogui
 import os
 import time
 import subprocess
-base_path = "~/layers/principais"
+base_path = "/home/fael/layers/principais"
+typeOfCommands = ['yarn start', 'docker-compose up']
 paths = [
-    "/tendaedu-backend/app",
-    "/layers-auth-vanilla",
-    "/layers-webapp",
-    "/tendaedu-web/app",
     "/tendaedu-web/web",
+    "/tendaedu-web/app",
+    "/layers-webapp",
+    "/layers-auth-vanilla",
+    "/tendaedu-backend/app",
 ]
-#subprocess.call('gnome-terminal --tab --', shell = True)
-# command = "gnome-terminal -- /bin/sh -c 'cd "+ base_path + paths[0] +";sleep 2;yarn start;exec bash'"
-# os.system(command)
 
+# init docker in backend
+command = "gnome-terminal --working-directory="+ base_path + "/tendaedu-backend" +" --tab -- bash -c '\
+    "+ typeOfCommands[1] +";\
+    exec bash'\
+"
+os.system(command)
+ 
+# run apps
 for i in paths:
-    command = "gnome-terminal -- /bin/sh -c 'cd "+ base_path + i +";sleep 3;yarn start;exec bash'"
+    # sleeping for 2 seconds 
+    time.sleep(2)
+    command = "gnome-terminal --tab --working-directory="+ base_path + i +" -- bash -c '\
+        sleep 5;\
+        "+ typeOfCommands[0] +";\
+        exec bash'\
+    "
     os.system(command)
-    time.sleep(7)
+# feedback
+print("all services running!")
