@@ -1,51 +1,14 @@
+from lib import methods
+from lib import repositorys
+from lib import get_path_repo
 import os
-import time
 
-path_scripts = "/home/fael/projects-helps-layers/script-for-run-services/"
+get_path_repo.dist_find()
 
-map_directorys = [
-    {
-        "type": "docker", 
-        "directory": "tendaedu-backend"
-    },
-    {
-        "type": "yarn", 
-        "directory": "tendaedu-backend"
-    },
-    {
-        "type": "yarn", "directory": 
-        "layers-auth-vanilla"
-    },
-    {
-        "type": "yarn", 
-        "directory": "layers-webapp"
-    },
-    {
-        "type": "yarn", 
-        "directory": "tendaedu-web/app"
-    },
-    {
-        "type": "yarn", 
-        "directory": "tendaedu-web/web"
-    }
-]
-
-def type_service(type):
-    if type == "docker":
-        return "script-docker.sh"
-    elif type == "yarn":
-        return "script-yarn.sh"
-
-def wait(seconds):
-    time.sleep(seconds)
-
-def run_service(typeOfScript, directory):
-    command = f"gnome-terminal --tab -- bash {path_scripts}{typeOfScript} {directory}"
-    os.system(command)
+path_script = os.path.dirname(os.path.abspath(__file__)) + '/script.sh'
     
-
-for i in map_directorys:
+for i in repositorys.data:
     print("prepare to run service: ", i["directory"])
-    wait(2)
-    run_service(type_service(i["type"]), i['directory'])
+    methods.wait(5)
+    methods.run_service(path_script, i['directory'], i['flag'])
     

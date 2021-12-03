@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-main_path="/home/fael/layers/principais/"
+main_path=`cat main_path.txt`
