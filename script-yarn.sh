@@ -3,7 +3,7 @@
 
 source ./config.sh 
 path=$main_path
-path+="layers-auth-vanilla"
+path+=$1
 
 cd "$path"
 nvm use

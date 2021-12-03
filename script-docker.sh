@@ -3,7 +3,7 @@
 
 source ./config.sh 
 path=$main_path
-path+="tendaedu-backend"
+path+=$1
 
 cd "$path"
 docker-compose up -d
