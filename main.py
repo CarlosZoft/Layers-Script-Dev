@@ -17,25 +17,31 @@ selectedApps = input(f"\nselect the apps with format : '0,1,2':\n");
 
 # Running default repositorys
 for i in repositorys.data:
-    print("prepare to run service: ", i["directory"])
+    print(f"prepare to run {i['type']} on {i['directory']}")
     methods.wait(5)
     methods.run_service(path_script, i['directory'], i['flag'])
 
-# Running selected apps
+# Running apps
+def run_app(currentRepo, relativePath ):
+    path = currentRepo[relativePath]
+    print(f"prepare to run {relativePath} on {path['directory']}")
+    methods.run_service(path_script, path["directory"], path["flag"])
+    methods.wait(5)
+
+# Worker selected apps
 for i in selectedApps.split(','):  
     indexOfApp = int(i)
     listOfApps = list(repositorys.apps.keys())
     if(indexOfApp < len(listOfApps)):
         key = listOfApps[int(indexOfApp)]
-        # if have interface, run interface
+        # if have docker, run it
+        if(key in repositorys.docker.keys()):
+            run_app(repositorys.docker[key], 'docker')
+        #  if have interface, run it
         if("interface" in repositorys.apps[key]):
-            interfacePath = repositorys.apps[key]["interface"]
-            print("prepare to run service: ", interfacePath["directory"])
-            methods.run_service(path_script, interfacePath['directory'], interfacePath['flag'])
-        # if run backend, run backend
+            run_app(repositorys.apps[key],"interface")
+        # if run backend, run it
         if("backend" in repositorys.apps[key]):
-            backendPath = repositorys.apps[key]["backend"]
-            print("prepare to run service: ", backendPath["directory"])
-            methods.run_service(path_script, backendPath['directory'], backendPath['flag'])
+            run_app(repositorys.apps[key],"backend")
     else :
         print("Not possible run the app with id :", indexOfApp)

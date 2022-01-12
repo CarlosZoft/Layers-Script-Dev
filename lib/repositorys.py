@@ -7,29 +7,38 @@ data = [
     {
         "directory": "tendaedu-backend",
         "flag": most_util_tags['docker'],
+        "type": "docker",
     },
     {
         "directory": "layers-webapp",
         "flag": most_util_tags['nvm and yarn'],
+        "type": "app",
     },
     {
         "directory": "layers-auth-vanilla",
         "flag": most_util_tags['nvm and yarn'],
+        "type": "auth app",
     },
-    # {
-    #     "directory": "tendaedu-web/app",
-    #     "flag": most_util_tags['nvm and yarn'],
-    # },
-    # {
-    #     "directory": "tendaedu-web/web",
-    #     "flag": most_util_tags['nvm and yarn'],
-    # },
     {
         "directory": "tendaedu-backend",
         "flag": most_util_tags['nvm and yarn'],
+        "type": "app",
     }
 ]
-
+docker = {
+   "layers-comunicados": {
+       "docker": {
+        "directory": "layers-comunicados",
+        "flag": most_util_tags['docker'],
+       }
+    },
+    "layers-payments": {
+        "docker": {
+        "directory": "payments",
+        "flag": most_util_tags['docker'],
+        }    
+    },
+}
 apps = {
     "layers-comunicados": {
         "interface" : {
@@ -44,6 +53,22 @@ apps = {
     "layers-design-system": {
         "interface" : {
             "directory": "layers-design-system",
+            "flag": most_util_tags['nvm and yarn'],
+        }
+    },
+    "layers-payments": {
+        "interface" : {
+            "directory": "payments/app",
+            "flag": most_util_tags['nvm and yarn'],
+        }
+    },
+    "tendaedu-backend": {
+        "interface" : {
+            "directory": "tendaedu-backend/web",
+            "flag": most_util_tags['nvm and yarn'],
+        },
+        "backend": {
+            "directory": "tendaedu-backend/app",
             "flag": most_util_tags['nvm and yarn'],
         }
     }
