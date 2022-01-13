@@ -15,12 +15,6 @@ def run_app(currentRepo, relativePath ):
 
 add_apps = input("Do you want to add apps to running? (y/n): ")
 
-# List of apps available
-for id_unique, app in enumerate(repositorys.apps.keys()):
-    print(f"\n{id_unique} - {app}")
-
-# Select apps to run
-selected_apps = input(f"\nselect the apps with format : '0,1,2':\n");
 
 # Running default repositorys
 for i in repositorys.data:
@@ -30,6 +24,13 @@ for i in repositorys.data:
 
 if add_apps == 'y':
 
+    # List of apps available
+    for id_unique, app in enumerate(repositorys.apps.keys()):
+        print(f"\n{id_unique} - {app}")
+
+    # Select apps to run
+    selected_apps = input(f"\nselect the apps with format : '0,1,2':\n");
+    
     # Worker selected apps
     for i in selected_apps.split(','):  
         try:
