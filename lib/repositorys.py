@@ -7,22 +7,17 @@ data = [
     {
         "directory": "tendaedu-backend",
         "flag": most_util_tags['docker'],
-        "type": "docker",
-    },
-    {
-        "directory": "layers-webapp",
-        "flag": most_util_tags['nvm and yarn'],
-        "type": "app",
+        "type": "Docker",
     },
     {
         "directory": "layers-auth-vanilla",
         "flag": most_util_tags['nvm and yarn'],
-        "type": "auth app",
+        "type": "Auth Interface",
     },
     {
         "directory": "tendaedu-backend",
         "flag": most_util_tags['nvm and yarn'],
-        "type": "app",
+        "type": "Backend",
     }
 ]
 docker = {
@@ -59,6 +54,12 @@ apps = {
     "layers-payments": {
         "interface" : {
             "directory": "payments/app",
+            "flag": most_util_tags['nvm and yarn'],
+        }
+    },
+    "layers-webapp": {
+        "interface" : {
+            "directory": "layers-webapp",
             "flag": most_util_tags['nvm and yarn'],
         }
     },
